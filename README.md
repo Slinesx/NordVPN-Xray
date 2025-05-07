@@ -2,7 +2,7 @@
 
 **Automated Dockerized NordVPN + Xray (Shadowsocks 2022) proxy**  
 Dynamically downloads the correct OpenVPN config, starts NordVPN via NordLynx/TUN,  
-and runs Xray in a container exposing a SOCKS5/SS proxy with emoji‐tagged server codes.
+and runs Xray in a container exposing a SS proxy with emoji‐tagged server codes.
 
 ## Quickstart
 
