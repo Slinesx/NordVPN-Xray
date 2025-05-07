@@ -21,10 +21,15 @@ and runs Xray in a container exposing a SOCKS5/SS proxy with emoji‐tagged serv
 
 ## Quickstart
 
-```bash
-export NORD_USERNAME="you@nordvpn"
-export NORD_PASSWORD="your-nord-pw"
+1. **Export your NordVPN credentials**:
 
-# One‑liner installer and launcher:
-bash -c "$(curl -fsSL \
-  https://raw.githubusercontent.com/YOUR_USERNAME/Proxy-Utilities/main/install-nordvpn-xray.sh)"
+    ```bash
+    export NORD_USERNAME="you@nordvpn"
+    export NORD_PASSWORD="your-nord-pw"
+    ```
+
+2. **Run the one-liner installer & launcher** (replace `YOUR_USERNAME` and `tr54` as needed):
+
+    ```bash
+    bash -c "$(curl -fsSL https://raw.githubusercontent.com/YOUR_USERNAME/Proxy-Utilities/main/install-nordvpn-xray.sh)" tr54
+    ```
