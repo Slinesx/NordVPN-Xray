@@ -28,8 +28,8 @@ and runs Xray in a container exposing a SOCKS5/SS proxy with emoji‐tagged serv
     export NORD_PASSWORD="your-nord-pw"
     ```
 
-2. **Run the one-liner installer & launcher** (replace `YOUR_USERNAME` and `tr54` as needed):
+2. **Run the one-liner installer & launcher**:
 
     ```bash
-    bash -c "$(curl -fsSL https://raw.githubusercontent.com/YOUR_USERNAME/Proxy-Utilities/main/install-nordvpn-xray.sh)" tr54
+    bash -c "$(curl -H 'Cache-Control: no-cache, no-store' -fsSL https://raw.githubusercontent.com/Slinesx/NordVPN-Xray/main/install-nordvpn-xray.sh)"
     ```
