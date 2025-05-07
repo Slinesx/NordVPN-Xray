@@ -4,6 +4,21 @@
 Dynamically downloads the correct OpenVPN config, starts NordVPN via NordLynx/TUN,  
 and runs Xray in a container exposing a SOCKS5/SS proxy with emoji‐tagged server codes.
 
+## Quickstart
+
+1. **Export your NordVPN credentials**:
+
+    ```bash
+    export NORD_USERNAME="you@nordvpn"
+    export NORD_PASSWORD="your-nord-pw"
+    ```
+
+2. **Run the one-liner installer & launcher**:
+
+    ```bash
+    bash -c "$(curl -H 'Cache-Control: no-cache, no-store' -fsSL https://raw.githubusercontent.com/Slinesx/NordVPN-Xray/main/install-nordvpn-xray.sh)"
+    ```
+
 ## Features
 
 - **Auto‑download** `.ovpn` file by server code (e.g. `tr54`).  
@@ -18,18 +33,3 @@ and runs Xray in a container exposing a SOCKS5/SS proxy with emoji‐tagged serv
 - nordvpn account credentials  
 - `git` (if you’re cloning the repo)  
 - (Optional) GitHub CLI `gh` for quick repo creation
-
-## Quickstart
-
-1. **Export your NordVPN credentials**:
-
-    ```bash
-    export NORD_USERNAME="you@nordvpn"
-    export NORD_PASSWORD="your-nord-pw"
-    ```
-
-2. **Run the one-liner installer & launcher** (replace `YOUR_USERNAME` and `tr54` as needed):
-
-    ```bash
-    bash -c "$(curl -fsSL https://raw.githubusercontent.com/YOUR_USERNAME/Proxy-Utilities/main/install-nordvpn-xray.sh)" tr54
-    ```
