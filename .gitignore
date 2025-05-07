@@ -1,0 +1,4 @@
+# ignore downloaded configs & temp
+*.ovpn
+/tmp/
+*.tmp
