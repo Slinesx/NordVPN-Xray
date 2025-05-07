@@ -54,10 +54,6 @@ while :; do
   ss -tln | awk '{print $4}' | grep -q ":${PORT}$" || break
 done
 
-# 10) pull & run the container
-echo "→ Pulling latest liafonx/nordvpn-xray:latest"
-docker pull liafonx/nordvpn-xray:latest
-
 container="nordxray-${srv}"
 docker rm -f "$container" &>/dev/null || true
 
