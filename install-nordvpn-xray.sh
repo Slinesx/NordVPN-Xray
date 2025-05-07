@@ -21,10 +21,10 @@ trap cleanup EXIT
 # 4) download emoji mapping scripts into TMPDIR
 echo "→ Fetching emoji mappings…"
 curl -H 'Cache-Control: no-cache, no-store' -fsSL \
-  "https://raw.githubusercontent.com/Slinesx/Proxy-Utilities/main/emoji_data.sh?ts=${TS}" \
+  "https://raw.githubusercontent.com/Slinesx/NordVPN-Xray/main/emoji_data.sh?ts=${TS}" \
   -o "$TMPDIR/emoji_data.sh"
 curl -H 'Cache-Control: no-cache, no-store' -fsSL \
-  "https://raw.githubusercontent.com/Slinesx/Proxy-Utilities/main/emoji_utils.sh?ts=${TS}" \
+  "https://raw.githubusercontent.com/Slinesx/NordVPN-Xray/main/emoji_utils.sh?ts=${TS}" \
   -o "$TMPDIR/emoji_utils.sh"
 
 # 5) source the utils
@@ -60,6 +60,7 @@ docker pull liafonx/nordvpn-xray:latest
 
 container="nordxray-${srv}"
 docker rm -f "$container" &>/dev/null || true
+
 docker run -d --name "$container" \
   --pull=always \
   --cap-add=NET_ADMIN --device=/dev/net/tun \
