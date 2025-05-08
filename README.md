@@ -30,5 +30,3 @@ Dynamically downloads the correct OpenVPN config, starts NordVPN via NordLynx/TU
 
 - Docker  
 - nordvpn account credentials  
-- `git` (if you’re cloning the repo)  
-- (Optional) GitHub CLI `gh` for quick repo creation
