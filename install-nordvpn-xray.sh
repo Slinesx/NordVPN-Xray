@@ -6,12 +6,27 @@ set -Eeuo pipefail
 command -v docker >/dev/null 2>&1 || { echo "❌ Install Docker first" >&2; exit 1; }
 command -v curl   >/dev/null 2>&1 || { echo "❌ Install curl first" >&2;   exit 1; }
 
-# 1) credentials
-: "${NORD_USERNAME:?ERROR: export NORD_USERNAME}"
-: "${NORD_PASSWORD:?ERROR: export NORD_PASSWORD}"
-
-# 2) cache‑bust timestamp
-TS="$(date +%s)"
+# 1) credentials: prompt & save if missing, then source them
+if [[ -z "${NORD_USERNAME:-}" || -z "${NORD_PASSWORD:-}" ]]; then
+  echo "❗️ NordVPN credentials not found in your environment."
+  read -rp "Enter NordVPN username: " NORD_USERNAME
+  read -rsp "Enter NordVPN password: " NORD_PASSWORD
+  echo
+  case "${SHELL##*/}" in
+    zsh) RCFILE="$HOME/.zshrc" ;;
+    *) RCFILE="$HOME/.bashrc" ;;
+  esac
+  {
+    echo ""
+    echo "# NordVPN credentials added by install-nordvpn-xray.sh"
+    echo "export NORD_USERNAME=\"$NORD_USERNAME\""
+    echo "export NORD_PASSWORD=\"$NORD_PASSWORD\""
+  } >> "$RCFILE"
+  echo "✅ Saved credentials to $RCFILE."
+  echo "→ sourcing $RCFILE"
+  # shellcheck source=/dev/null
+  source "$RCFILE"
+fi
 
 # 3) make a temp workspace
 TMPDIR="$(mktemp -d)"
@@ -21,10 +36,10 @@ trap cleanup EXIT
 # 4) download emoji mapping scripts into TMPDIR
 echo "→ Fetching emoji mappings…"
 curl -H 'Cache-Control: no-cache, no-store' -fsSL \
-  "https://raw.githubusercontent.com/Slinesx/NordVPN-Xray/main/emoji_data.sh?ts=${TS}" \
+  "https://raw.githubusercontent.com/Slinesx/NordVPN-Xray/main/emoji_data.sh" \
   -o "$TMPDIR/emoji_data.sh"
 curl -H 'Cache-Control: no-cache, no-store' -fsSL \
-  "https://raw.githubusercontent.com/Slinesx/NordVPN-Xray/main/emoji_utils.sh?ts=${TS}" \
+  "https://raw.githubusercontent.com/Slinesx/NordVPN-Xray/main/emoji_utils.sh" \
   -o "$TMPDIR/emoji_utils.sh"
 
 # 5) source the utils
