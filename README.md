@@ -1,8 +1,7 @@
 # nordvpn-xray-proxy
 
-**Automated Dockerized NordVPN + Xray (Shadowsocks) proxy**  
-Dynamically downloads the correct OpenVPN config, starts NordVPN via NordLynx/TUN,  
-and runs Xray in a container exposing a SOCKS5/SS proxy with emoji‐tagged server codes.
+**Automated Dockerized NordVPN + Xray (Shadowsocks 2022) proxy**  
+Dynamically downloads the correct OpenVPN config, starts NordVPN via NordLynx/TUN, and runs Xray in a container exposing a SS proxy with emoji‐tagged server codes.
 
 ## Quickstart
 
@@ -31,5 +30,3 @@ and runs Xray in a container exposing a SOCKS5/SS proxy with emoji‐tagged serv
 
 - Docker  
 - nordvpn account credentials  
-- `git` (if you’re cloning the repo)  
-- (Optional) GitHub CLI `gh` for quick repo creation

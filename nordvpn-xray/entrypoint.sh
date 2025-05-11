@@ -42,24 +42,25 @@ until ip link show tun0 &>/dev/null; do
 done
 echo " up."
 
-# 5) policy-route all traffic from the container's primary interface via host NIC
+# 5) policy-route all traffic from the container’s primary interface via host NIC
 CONTAINER_IP=$(ip -4 addr show dev "$iface" \
                | awk '/inet /{sub(/\/.*/,"",$2); print $2; exit}')
 echo "200 hosttable" >> /etc/iproute2/rt_tables
 ip route add default via "$gw" dev "$iface" table hosttable
 ip rule add from "$CONTAINER_IP" table hosttable priority 100
 
-# 6) bind Xray to all interfaces
-listen_ip=$(ip -4 addr show eth0 | awk '/inet /{sub(/\/.*/,"",$2); print $2; exit}')
+# 6) determine eth0 IP to bind Xray (UDP correctness)
+listen_ip=$(ip -4 addr show eth0 \
+            | awk '/inet /{sub(/\/.*/,"",$2); print $2; exit}')
 
-# 7) render Xray config.json
+# 7) render Xray config.json with tcpFastOpen and warning loglevel
 mkdir -p /etc/xray
 cat > /etc/xray/config.json <<EOF
 {
   "log": {
     "access": "none",
     "error": "",
-    "loglevel": "info",
+    "loglevel": "warning",
     "dnsLog": false,
     "maskAddress": ""
   },
@@ -72,6 +73,11 @@ cat > /etc/xray/config.json <<EOF
         "method": "2022-blake3-aes-128-gcm",
         "password": "${SS_PASSWORD}",
         "network": "tcp,udp"
+      },
+      "streamSettings": {
+        "sockopt": {
+          "tcpFastOpen": true
+        }
       }
     }
   ],

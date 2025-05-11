@@ -54,6 +54,7 @@ while :; do
   ss -tln | awk '{print $4}' | grep -q ":${PORT}$" || break
 done
 
+# 10) set up the container
 container="nordxray-${srv}"
 docker rm -f "$container" &>/dev/null || true
 
