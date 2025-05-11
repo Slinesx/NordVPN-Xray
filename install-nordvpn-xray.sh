@@ -23,9 +23,9 @@ if [[ -z "${NORD_USERNAME:-}" || -z "${NORD_PASSWORD:-}" ]]; then
     echo "export NORD_PASSWORD=\"$NORD_PASSWORD\""
   } >> "$RCFILE"
   echo "✅ Saved credentials to $RCFILE."
-  echo "→ sourcing $RCFILE"
-  # shellcheck source=/dev/null
-  source "$RCFILE"
+  echo "→ Please run this command to apply the changes:"
+  echo "  source $RCFILE"
+  exit 0
 fi
 
 # 3) make a temp workspace
