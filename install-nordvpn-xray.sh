@@ -80,7 +80,7 @@ if [[ "$(docker inspect -f '{{.State.Running}}' "$container")" != "true" ]]; the
 fi
 
 # 12) final output
-HOST_IP=$(hostname -I | awk '{print $1}')
+HOST_IP=$(curl -s https://api.ipify.org)
 cat <<EOF
 -----------------------------------------------------------------
   ✅  Shadowsocks proxy is ready!
