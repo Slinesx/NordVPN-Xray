@@ -102,6 +102,6 @@ cat <<EOF
   ✅  Shadowsocks proxy is ready!
 
   Container   : ${container}
-  Xray: shadowsocks=${HOST_IP}:${PORT}, method=2022-blake3-aes-128-gcm, password=${SS_PASSWORD}, fast-open=false, udp-relay=true, tag=${TAG}
+  Xray: shadowsocks=${HOST_IP}:${PORT}, method=2022-blake3-aes-128-gcm, password=${SS_PASSWORD}, fast-open=true, udp-relay=true, tag=${TAG}
 -----------------------------------------------------------------
 EOF
